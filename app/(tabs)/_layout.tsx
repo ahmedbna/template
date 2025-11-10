@@ -17,6 +17,7 @@ export default function TabsLayout() {
 
   return (
     <NativeTabs
+      minimizeBehavior='onScrollDown'
       labelStyle={{
         default: { color: primary },
         selected: { color: foreground },

@@ -6,21 +6,26 @@ import { Text } from '@/components/ui/text';
 import { Platform } from 'react-native';
 
 export default function SearchLayout() {
-  const text = useColor('text');
   const theme = useColorScheme();
+  const text = useColor('text');
+  const background = useColor('background');
 
   return (
     <Stack
       screenOptions={{
         headerLargeTitle: true,
         headerLargeTitleShadowVisible: false,
-        headerTransparent: true,
         headerTintColor: text,
         headerBlurEffect: isLiquidGlassAvailable()
           ? undefined
           : theme === 'dark'
             ? 'systemMaterialDark'
             : 'systemMaterialLight',
+        headerStyle: {
+          backgroundColor: isLiquidGlassAvailable()
+            ? 'transparent'
+            : background,
+        },
       }}
     >
       <Stack.Screen

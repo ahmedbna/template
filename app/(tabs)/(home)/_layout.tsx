@@ -5,8 +5,9 @@ import { useColor } from '@/hooks/useColor';
 import { Text } from '@/components/ui/text';
 
 export default function HomeLayout() {
-  const text = useColor('text');
   const theme = useColorScheme();
+  const text = useColor('text');
+  const background = useColor('background');
 
   return (
     <Stack
@@ -20,6 +21,11 @@ export default function HomeLayout() {
           : theme === 'dark'
             ? 'systemMaterialDark'
             : 'systemMaterialLight',
+        headerStyle: {
+          backgroundColor: isLiquidGlassAvailable()
+            ? 'transparent'
+            : background,
+        },
       }}
     >
       <Stack.Screen

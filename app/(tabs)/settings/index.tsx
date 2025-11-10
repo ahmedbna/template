@@ -1,5 +1,6 @@
 import { SignOutButton } from '@/components/auth/singout';
 import { ModeToggle } from '@/components/ui/mode-toggle';
+import { ScrollView } from '@/components/ui/scroll-view';
 import { Spinner } from '@/components/ui/spinner';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -26,12 +27,13 @@ export default function SettingsScreen() {
   }
 
   return (
-    <View
-      style={{
+    <ScrollView
+      style={{ flex: 1 }}
+      contentContainerStyle={{
         flex: 1,
-        justifyContent: 'center',
+        gap: 18,
+        paddingTop: 96,
         alignItems: 'center',
-        gap: 36,
       }}
     >
       <ModeToggle />
@@ -42,6 +44,6 @@ export default function SettingsScreen() {
       </View>
 
       <SignOutButton />
-    </View>
+    </ScrollView>
   );
 }
