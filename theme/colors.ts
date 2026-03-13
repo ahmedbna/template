@@ -1,3 +1,6 @@
+// App colors used across the app
+// theme/colors.ts
+
 export const COLORS = {
   yellow: '#FAD40B',
   black: '#0A0A0A',
