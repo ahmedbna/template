@@ -46,6 +46,7 @@ export default function RootLayout() {
                 flex: 1,
                 alignItems: 'center',
                 justifyContent: 'center',
+                backgroundColor: '#FAD40B',
               }}
             >
               <Spinner color='#000000' />
@@ -55,7 +56,7 @@ export default function RootLayout() {
             <Authentication />
           </Unauthenticated>
           <Authenticated>
-            <Stack>
+            <Stack screenOptions={{ headerShown: false }}>
               <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
               <Stack.Screen name='+not-found' />
             </Stack>

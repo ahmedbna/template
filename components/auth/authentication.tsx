@@ -5,6 +5,7 @@ import {
   KeyboardAwareScrollView,
   KeyboardToolbar,
 } from 'react-native-keyboard-controller';
+import { Image } from 'expo-image';
 
 type AuthStep = 'signIn' | 'signUp';
 
@@ -76,15 +77,26 @@ export const Authentication = () => {
   };
 
   return (
-    <>
+    <View style={{ flex: 1, backgroundColor: '#FAD40B' }}>
       <KeyboardAwareScrollView
         bottomOffset={62}
         contentContainerStyle={{
-          flex: 1,
           gap: 16,
           padding: 16,
+          alignItems: 'center',
         }}
       >
+        <Image
+          style={{
+            width: 200,
+            height: 200,
+            backgroundColor: '#FAD40B',
+          }}
+          source={require('../../assets/images/icon.png')}
+          contentFit='cover'
+          transition={1000}
+        />
+
         <View>
           <TextInput
             style={{
@@ -130,9 +142,11 @@ export const Authentication = () => {
           <Pressable
             onPress={handleSignInUpSubmit}
             disabled={loading}
-            style={{ backgroundColor: '#FAD40B', padding: 10, borderRadius: 5 }}
+            style={{ backgroundColor: '#000', padding: 10, borderRadius: 5 }}
           >
-            <Text>{step === 'signIn' ? 'Login' : 'Create new account'}</Text>
+            <Text style={{ color: '#FFF' }}>
+              {step === 'signIn' ? 'Login' : 'Create new account'}
+            </Text>
           </Pressable>
 
           <View
@@ -176,6 +190,6 @@ export const Authentication = () => {
         </View>
       </KeyboardAwareScrollView>
       <KeyboardToolbar />
-    </>
+    </View>
   );
 };
