@@ -3,7 +3,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { api } from '@/convex/_generated/api';
 import { COLORS } from '@/theme/colors';
 import { useQuery } from 'convex/react';
-import { ScrollView, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 export default function SettingsScreen() {
   const user = useQuery(api.auth.loggedInUser);

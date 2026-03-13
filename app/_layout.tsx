@@ -58,7 +58,7 @@ export default function RootLayout() {
           </Unauthenticated>
           <Authenticated>
             <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+              <Stack.Screen name='(home)' options={{ headerShown: false }} />
               <Stack.Screen name='+not-found' />
             </Stack>
           </Authenticated>
