@@ -1,24 +1,74 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { Authentication } from '@/components/auth/authentication';
+import { ConvexAuthProvider } from '@convex-dev/auth/react';
+import {
+  Authenticated,
+  AuthLoading,
+  ConvexReactClient,
+  Unauthenticated,
+} from 'convex/react';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { Platform, Text, View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
+import * as SplashScreen from 'expo-splash-screen';
+import * as SecureStore from 'expo-secure-store';
 import 'react-native-reanimated';
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
+SplashScreen.setOptions({
+  duration: 200,
+  fade: true,
+});
+
+const secureStorage = {
+  getItem: SecureStore.getItemAsync,
+  setItem: SecureStore.setItemAsync,
+  removeItem: SecureStore.deleteItemAsync,
+};
+
+const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL!, {
+  unsavedChangesWarning: false,
+});
 
 export const unstable_settings = {
   anchor: '(tabs)',
 };
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <KeyboardProvider>
+        <ConvexAuthProvider
+          client={convex}
+          storage={
+            Platform.OS === 'android' || Platform.OS === 'ios'
+              ? secureStorage
+              : undefined
+          }
+        >
+          <AuthLoading>
+            <View
+              style={{
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Text>Loading...</Text>
+            </View>
+          </AuthLoading>
+          <Unauthenticated>
+            <Authentication />
+          </Unauthenticated>
+          <Authenticated>
+            <Stack>
+              <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+              <Stack.Screen name='+not-found' />
+            </Stack>
+          </Authenticated>
+        </ConvexAuthProvider>
+      </KeyboardProvider>
+      <StatusBar style='auto' />
+    </GestureHandlerRootView>
   );
 }

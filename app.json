@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "template",
-    "slug": "template",
+    "name": "bna",
+    "slug": "bna",
+    "scheme": "bna",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "template",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -38,7 +38,8 @@
             "backgroundColor": "#000000"
           }
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,
