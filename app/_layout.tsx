@@ -32,7 +32,7 @@ const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL!, {
 });
 
 export const unstable_settings = {
-  anchor: '(tabs)',
+  anchor: '(home)',
 };
 
 export default function RootLayout() {
