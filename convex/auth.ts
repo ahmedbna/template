@@ -3,8 +3,6 @@ import Google from '@auth/core/providers/google';
 import GitHub from '@auth/core/providers/github';
 import { convexAuth, getAuthUserId } from '@convex-dev/auth/server';
 import { Password } from '@convex-dev/auth/providers/Password';
-import { ResendOTPPasswordReset } from './passwordReset';
-import { ResendOTP } from './resendOTP';
 import { query } from './_generated/server';
 import { Anonymous } from '@convex-dev/auth/providers/Anonymous';
 
@@ -12,7 +10,6 @@ export const { auth, signIn, signOut, store, isAuthenticated } = convexAuth({
   providers: [
     Anonymous,
     Google,
-    ResendOTP,
     Apple({
       profile: (appleInfo) => {
         const name = appleInfo.user
@@ -33,7 +30,7 @@ export const { auth, signIn, signOut, store, isAuthenticated } = convexAuth({
           gender: params.gender as string,
         };
       },
-      reset: ResendOTPPasswordReset,
+      // reset: ResendOTPPasswordReset,
       validatePasswordRequirements(password) {
         console.log('Validating password requirements...');
 
@@ -47,13 +44,13 @@ export const { auth, signIn, signOut, store, isAuthenticated } = convexAuth({
 
         if (!/[a-z]/.test(password)) {
           throw new Error(
-            'Password must contain at least one lowercase letter'
+            'Password must contain at least one lowercase letter',
           );
         }
 
         if (!/[A-Z]/.test(password)) {
           throw new Error(
-            'Password must contain at least one uppercase letter'
+            'Password must contain at least one uppercase letter',
           );
         }
 

@@ -8,12 +8,13 @@ import {
 } from 'convex/react';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { Platform, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import * as SplashScreen from 'expo-splash-screen';
 import * as SecureStore from 'expo-secure-store';
 import 'react-native-reanimated';
+import { Spinner } from '@/components/ui/spinner';
 
 SplashScreen.setOptions({
   duration: 200,
@@ -38,14 +39,7 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <KeyboardProvider>
-        <ConvexAuthProvider
-          client={convex}
-          storage={
-            Platform.OS === 'android' || Platform.OS === 'ios'
-              ? secureStorage
-              : undefined
-          }
-        >
+        <ConvexAuthProvider client={convex} storage={secureStorage}>
           <AuthLoading>
             <View
               style={{
@@ -54,7 +48,7 @@ export default function RootLayout() {
                 justifyContent: 'center',
               }}
             >
-              <Text>Loading...</Text>
+              <Spinner color='#000000' />
             </View>
           </AuthLoading>
           <Unauthenticated>

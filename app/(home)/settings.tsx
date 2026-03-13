@@ -1,4 +1,5 @@
 import { SignOutButton } from '@/components/auth/singout';
+import { Spinner } from '@/components/ui/spinner';
 import { api } from '@/convex/_generated/api';
 import { useQuery } from 'convex/react';
 import { ScrollView, Text, View } from 'react-native';
@@ -9,7 +10,7 @@ export default function SettingsScreen() {
   if (user === undefined) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Loading...</Text>
+        <Spinner color='#000000' />
       </View>
     );
   }
