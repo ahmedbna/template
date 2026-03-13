@@ -11,10 +11,11 @@ import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
+import { Spinner } from '@/components/ui/spinner';
+import { COLORS } from '@/theme/colors';
 import * as SplashScreen from 'expo-splash-screen';
 import * as SecureStore from 'expo-secure-store';
 import 'react-native-reanimated';
-import { Spinner } from '@/components/ui/spinner';
 
 SplashScreen.setOptions({
   duration: 200,
@@ -46,10 +47,10 @@ export default function RootLayout() {
                 flex: 1,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: '#FAD40B',
+                backgroundColor: COLORS.yellow,
               }}
             >
-              <Spinner color='#000000' />
+              <Spinner color={COLORS.black} />
             </View>
           </AuthLoading>
           <Unauthenticated>

@@ -1,3 +1,4 @@
+import { COLORS } from '@/theme/colors';
 import MaterialIcons from '@expo/vector-icons/Feather';
 import {
   Badge,
@@ -13,14 +14,14 @@ export default function HomeLayout() {
     <NativeTabs
       minimizeBehavior='onScrollDown'
       labelStyle={{
-        default: { color: '#18181b' },
-        selected: { color: '#000000' },
+        default: { color: COLORS.blackSoft },
+        selected: { color: COLORS.black },
       }}
       iconColor={{
-        default: '#18181b',
-        selected: '#000000',
+        default: COLORS.blackSoft,
+        selected: COLORS.black,
       }}
-      badgeBackgroundColor='#FF3B30'
+      badgeBackgroundColor={COLORS.red}
       labelVisibilityMode='labeled'
       disableTransparentOnScrollEdge={true}
     >

@@ -230,7 +230,7 @@ export const Authentication = () => {
               borderRadius: 24,
               padding: 24,
               gap: 16,
-              shadowColor: '#000',
+              shadowColor: COLORS.black,
               shadowOffset: { width: 0, height: 16 },
               shadowOpacity: 0.4,
               shadowRadius: 32,
